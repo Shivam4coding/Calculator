@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Simple Bank</title>
+   <style>
+      body {
+         font-family: Arial, sans-serif;
+         background-color: #f4f4f4;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         height: 100vh;
+         margin: 0;
+      }
+
+      #container {
+         width: 300px;
+         background-color: white;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+         border-radius: 5px;
+         overflow: hidden;
+      }
+
+      #result {
+         background-color: #222;
+         color: white;
+         padding: 20px;
+         text-align: center;
+      }
+
+      #balance {
+         font-size: 28px;
+         margin: 10px 0;
+      }
+
+      #message {
+         min-height: 20px;
+         padding: 12px;
+         text-align: center;
+      }
+
+      #amount {
+         width: 100%;
+         padding: 14px;
+         border: 1px solid #ddd;
+         font-size: 16px;
+         text-align: center;
+      }
+
+      #keyboard {
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+      }
+
+      button {
+         padding: 20px;
+         font-size: 16px;
+         border: 1px solid #ddd;
+         cursor: pointer;
+      }
+
+      .operator {
+         background-color: #f39c12;
+         color: white;
+      }
+
+      .number {
+         background-color: #ecf0f1;
+      }
+   </style>
+</head>
+
+<body>
+   <div id="container">
+      <div id="result">
+         <p>My Bank Balance</p>
+         <p id="balance">₹ 1000</p>
+      </div>
+
+      <p id="message">Enter amount and choose an option</p>
+
+      <input type="number" id="amount" placeholder="Enter amount">
+
+      <div id="keyboard">
+         <button class="operator" id="deposit">Deposit</button>
+         <button class="operator" id="withdraw">Withdraw</button>
+         <button class="number" id="check">Check Balance</button>
+         <button class="number" id="clear">Clear</button>
+      </div>
+   </div>
+
+   <script>
+      var balance = 1000;
+
+      function getAmount() {
+         return Number(document.getElementById("amount").value);
+      }
+
+      function showBalance() {
+         document.getElementById("balance").innerHTML = "₹ " + balance;
+      }
+
+      document.getElementById("deposit").addEventListener("click", function () {
+         var amount = getAmount();
+
+         if (amount > 0) {
+            balance = balance + amount;
+            showBalance();
+            document.getElementById("message").innerHTML = "Money deposited successfully";
+            document.getElementById("amount").value = "";
+         } else {
+            document.getElementById("message").innerHTML = "Enter valid amount";
+         }
+      });
+
+      document.getElementById("withdraw").addEventListener("click", function () {
+         var amount = getAmount();
+
+         if (amount > 0 && amount <= balance) {
+            balance = balance - amount;
+            showBalance();
+            document.getElementById("message").innerHTML = "Money withdrawn successfully";
+            document.getElementById("amount").value = "";
+         } else {
+            document.getElementById("message").innerHTML = "Insufficient balance or invalid amount";
+         }
+      });
+
+      document.getElementById("check").addEventListener("click", function () {
+         showBalance();
+         document.getElementById("message").innerHTML = "Your current balance is shown above";
+      });
+
+      document.getElementById("clear").addEventListener("click", function () {
+         document.getElementById("amount").value = "";
+         document.getElementById("message").innerHTML = "Enter amount and choose an option";
+      });
+   </script>
+</body>
+</html>
