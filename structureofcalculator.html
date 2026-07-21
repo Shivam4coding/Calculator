@@ -1,0 +1,171 @@
+<!--
+1) Start the HTML document with `<html>`.
+
+2) Inside the `<head>` section:
+   a) Link the external CSS file using:
+      `<link rel="stylesheet" type="text/css" href="style.css">`
+   b) Link Google Font "Open Sans" (weights 600, 700) using the provided link.
+   c) Set the page title using `<title>A simple calculator</title>`.
+
+3) Inside the `<body>` section, create the main outer container:
+   a) Use `<div id="container">` to wrap the full calculator layout.
+
+4) Create the calculator box inside the container:
+   a) Use `<div id="calculator">` as the main calculator wrapper.
+
+5) Create the result display area:
+   a) Use `<div id="result">` to hold history and output.
+
+6) Create the history section:
+   a) Use `<div id="history">`
+   b) Add `<p id="history-value"></p>` to display the previous expression.
+
+7) Create the output section:
+   a) Use `<div id="output">`
+   b) Add `<p id="output-value"></p>` to display the current number/result.
+
+8) Create the keyboard section:
+   a) Use `<div id="keyboard">` to hold all calculator buttons.
+
+9) Add operator buttons (class="operator"):
+   a) Clear button:
+      - `<button class="operator" id="clear">C</button>`
+   b) Backspace/clear entry button:
+      - `<button class="operator" id="backspace">CE</button>`
+   c) Percentage button:
+      - `<button class="operator" id="%">%</button>`
+   d) Divide button:
+      - `<button class="operator" id="/">/</button>`
+   e) Multiply button:
+      - `<button class="operator" id="*">*</button>`
+   f) Minus button:
+      - `<button class="operator" id="-">-</button>`
+   g) Plus button:
+      - `<button class="operator" id="+">+</button>`
+   h) Equals button:
+      - `<button class="operator" id="=">=</button>`
+
+10) Add number buttons (class="number"):
+    a) Add buttons for digits 0 to 9 using:
+       `<button class="number" id="7">7</button>` etc.
+
+11) Add empty buttons (class="empty") for spacing:
+    a) Use `<button class="empty" id="empty"></button>`
+    b) These are used to align the layout like a real calculator grid.
+
+12) Link the external JavaScript file:
+    a) Use `<script src="script.js"></script>`
+    b) This file will handle button clicks, display updates, and calculations.
+
+13) Close all tags properly:
+    a) Close all divs, then close `</body>` and `</html>`.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+   <link rel="stylesheet" type="text/css" href="style.css">
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+   <title>A simple calculator</title>
+   <style>
+      body {
+         font-family: 'Open Sans', sans-serif;
+         background-color: #f4f4f4;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         height: 100vh;
+         margin: 0;
+      }
+
+      #container {
+         width: 300px;
+         background-color: #fff;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         border-radius: 5px;
+         overflow: hidden;
+      }
+
+      #calculator {
+         display: flex;
+         flex-direction: column;
+      }
+
+      #result {
+         background-color: #222;
+         color: #fff;
+         padding: 20px;
+         text-align: right;
+      }
+
+      #history-value,
+      #output-value {
+         margin: 0;
+      }
+
+      #keyboard {
+         display: grid;
+         grid-template-columns: repeat(4, 1fr);
+      }
+
+      button {
+         padding: 20px;
+         font-size: 18px;
+         border: none;
+         cursor: pointer;
+      }
+
+      .operator {
+         background-color: #f39c12;
+         color: #fff;
+      }
+
+      .number {
+         background-color: #ecf0f1;
+      }
+
+      .empty {
+         background-color: transparent;
+      }
+   </style>
+
+<body>
+   <div id="container">
+      <div id="calculator">
+         <div id="result">
+            <p id="history-value"></p>
+            <p id="output-value"></p>
+         </div>
+         <div id="history"></div>
+         <div id="output"></div>
+         <div id="keyboard">
+            <button class="operator" id="clear">C</button>
+            <button class="operator" id="backspace">CE</button>
+            <button class="operator" id="%">%</button>
+            <button class="operator" id="/">/</button>
+            <button class="operator" id="*">*</button>
+            <button class="operator" id="-">-</button>
+            <button class="operator" id="+">+</button>
+            <button class="operator" id="=">=</button>
+            <button class="number" id="7">7</button>
+            <button class="number" id="8">8</button>
+            <button class="number" id="9">9</button>
+            <button class="empty" id="*">*</button>
+            <button class="number" id="4">4</button>
+            <button class="number" id="5">5</button>
+            <button class="number" id="6">6</button>
+            <button class="empty" id="-">-</button>
+            <button class="number" id="1">1</button>
+            <button class="number" id="2">2</button>
+            <button class="number" id="3">3</button>
+            <button class="empty" id="+">+</button>
+            <button class="empty" id="empty"></button>
+            <button class="number" id="0">0</button>
+            <button class="number" id=".">.</button>
+            <button class="empty" id="empty"></button>
+            <button class="operator" id="=">=</button>
+         </div>
+         <script src="script.js"></script>
+      </div>
+   </div>
+</body>
+</html>
