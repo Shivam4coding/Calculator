@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Bank</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f0f7;
+            margin: 0;
+            padding: 40px;
+        }
+
+        #bank {
+            width: 420px;
+            margin: auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 12px #aaa;
+            overflow: hidden;
+        }
+
+        #header {
+            background-color: #124e8c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #balance-box {
+            background-color: #e5f2ff;
+            padding: 25px;
+            text-align: center;
+        }
+
+        #balance {
+            font-size: 32px;
+            color: #124e8c;
+            font-weight: bold;
+        }
+
+        #form {
+            padding: 25px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 48%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #deposit-btn {
+            background-color: #159447;
+        }
+
+        #withdraw-btn {
+            background-color: #d64a4a;
+            float: right;
+        }
+
+        #check-btn {
+            width: 100%;
+            background-color: #124e8c;
+            margin-top: 15px;
+        }
+
+        #message {
+            text-align: center;
+            padding: 15px;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="bank">
+
+        <div id="header">
+            <h2>My Bank</h2>
+            <p>Savings Account</p>
+        </div>
+
+        <div id="balance-box">
+            <p>Available Balance</p>
+            <p id="balance">₹ 1000</p>
+        </div>
+
+        <div id="form">
+            <input type="number" id="amount" placeholder="Enter amount">
+
+            <button id="deposit-btn" onclick="depositMoney()">Deposit</button>
+            <button id="withdraw-btn" onclick="withdrawMoney()">Withdraw</button>
+
+            <button id="check-btn" onclick="checkBalance()">Check Balance</button>
+        </div>
+
+        <p id="message">Welcome to My Bank</p>
+    </div>
+
+    <script>
+        var balance = 1000;
+
+        function depositMoney() {
+            var amount = Number(document.getElementById("amount").value);
+
+            if (amount > 0) {
+                balance = balance + amount;
+
+                document.getElementById("message").innerHTML =
+                    "₹ " + amount + " deposited successfully";
+
+                document.getElementById("amount").value = "";
+                checkBalance();
+            } else {
+                document.getElementById("message").innerHTML =
+                    "Please enter a valid amount";
+            }
+        }
+
+        function withdrawMoney() {
+            var amount = Number(document.getElementById("amount").value);
+
+            if (amount > 0 && amount <= balance) {
+                balance = balance - amount;
+
+                document.getElementById("message").innerHTML =
+                    "₹ " + amount + " withdrawn successfully";
+
+                document.getElementById("amount").value = "";
+                checkBalance();
+            } else {
+                document.getElementById("message").innerHTML =
+                    "Insufficient balance or invalid amount";
+            }
+        }
+
+        function checkBalance() {
+            document.getElementById("balance").innerHTML = "₹ " + balance;
+        }
+    </script>
+</body>
+</html>
